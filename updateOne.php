@@ -8,6 +8,8 @@ $value = $data->fieldValue;
 $id = $data->id;
 
 
+
+
 if($field === "age" && gettype($value) === "integer") {
     $isTypeGood = true;
 
