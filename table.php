@@ -1,6 +1,10 @@
 <?php
 
-require_once 'db.php.';
+require_once 'congig/db.php.';
+
+
+$table = "Table created succsessfuly";
+$table_error = "Error creating table";
 
 
 $query = "CREATE TABLE `tests`(
@@ -12,15 +16,16 @@ $query = "CREATE TABLE `tests`(
     `age` INT(0),
     `gender` VARCHAR (30) NOT NULL,
     `email` VARCHAR (30) NOT NULL,
-    `reg_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+    `created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 
 )";
 
-if ($conn->query($query) === TRUE ) {
-echo ("Table Users created succsessfully");
+if ($conn->query($query)) {
+echo json_encode (array("message"->$table));
 }
 else {
-    echo ("Error creating table".$conn -> error);
+    echo json_encode (array("message"->$table_error.$conn -> error));
 }
 
 ?>

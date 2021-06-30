@@ -1,22 +1,20 @@
 <?php
-require_once 'db.php.';
+require_once 'config/db.php.';
+require_once './lib/index.php';
 
 $data = json_decode(file_get_contents("php://input"));
 
-$sql = "UPDATE tests SET 
-            firstname= '$data->firstname', 
-            lastname= '$data->lastname',
-            nickname= '$data->nickname', 
-            age= '$data->age',  
-            gender= '$data->gender',  
-            email= '$data->email' 
-        WHERE id=$data->id ";
+$mesagge = "Successfuly updated";
+$error = "Error updating";
 
-if ($conn->query($sql)===TRUE){
-    echo "Successfuly updated";
+$result = updateUser($data, $conn);
+    
+
+if ($result){
+    echo json_encode (array ("message" => $mesagge));
 }
 else {
-    echo "Error updating";
+    echo json_encode (array("message" => $error));
 }
 
 

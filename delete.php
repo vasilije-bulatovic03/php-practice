@@ -1,19 +1,11 @@
 <?php
-require_once 'db.php.';
+require_once 'config/db.php.';
+require_once './lib/index.php';
 
 $data =  json_decode(file_get_contents("php://input"));
 
 
-$sql = "DELETE FROM tests where id = $data->id";
-
-
-if ($conn->query($sql)===TRUE) {
-    echo "Successfuly deleted";
-}
-
-else {
-    echo "Error deleting user";
-}
+deleteUser($data,$conn);
 
 
 
